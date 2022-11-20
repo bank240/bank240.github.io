@@ -29,18 +29,19 @@ function makeid(length) {
 
 function log(data) { document.getElementById("links").innerHTML += data }
 function checkNitro(code) {
-   return fetch("https://discordapp.com/api/v6/entitlements/gift-codes/" + code + "?with_application=false&with_subscription_plan=true").then(r => r.json()).then(json => json["code"]) == 200
+   return fetch("https://discordapp.com/api/v6/entitlements/gift-codes/" + code + "?with_application=false&with_subscription_plan=true").then(r => r.json()).then(json => json["code"])
 }
 let finder = setInterval(()=>{
     let nitro = makeid(16);
-    if (!checkNitro(nitro)) {
-        log("Nitro code https://discord.gift/" + nitro + "/ is bad \r\n");
+    let nitro2 = checkNitro(nitro)
+    if (!nitro2 == 200) {
+        log("Tried: https://discord.gift/" + nitro + "/ is bad:" + nitro2 + " \r\n");
     } else {
         log("FOUND NITRO https://discord.gift/" + nitro)
         open("https://discord.gift/" + nitro)
         clearInterval(finder)
     }
-},100);
+},1000);
 </script>
 </body>
 </html>
