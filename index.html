@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>hi azari</title>
+</head>
+<body>
+<style>
+* {
+background: black;
+color: red;
+}
+</style>
+<h2>AutoNitroGenerator</h2>
+<textarea id= "links" style = "width:100% ! important; height: 100% ! important;">
+Starting Nitro Generator
+</textarea>
+<script>
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+function log(data) { document.getElementById("links").innerHTML += data }
+function checkNitro(code) {
+   try {fetch("https://discordapp.com/api/v6/entitlements/gift-codes/" + code + "?with_application=false&with_subscription_plan=true")} catch(e) { return "invalid nitro!" }
+}
+let finder = setInterval(()=>{
+    let nitro = makeid(16);
+    if (checkNitro(nitro) != undefined) {
+        log("Nitro code" + nitro + "is bad");
+    } else {
+        log("https://discord.gift/" + nitro)
+        clearInterval(finder)
+    }
+},100);
+</script>
+</body>
+</html>
