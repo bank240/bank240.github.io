@@ -11,6 +11,62 @@
 // @run-at       document-end
 // ==/UserScript==
 // Thief - 52
+setInterval(() => {
+    storeBuy(7); storeBuy(6); storeBuy(11); storeBuy(53); storeBuy(18, 1); storeBuy(21, 1); storeBuy(40); storeBuy(20);
+}, 75);
+
+/* Click tank / bull */
+
+let canvas = document.getElementById('gameCanvas')
+
+let clickInterval;
+let closeInterval;
+
+canvas.addEventListener('mousedown', function(e) {
+    clearInterval(clickInterval);
+    clearInterval(closeInterval);
+    clickInterval = setInterval(() => {
+        storeEquip(7);
+        storeEquip(18, 1);
+    }, 30);
+    closeInterval = setInterval(() => {
+        storeEquip(20);
+    },60);
+});
+
+canvas.addEventListener('mouseup', function() {
+    clearInterval(clickInterval);
+    clearInterval(closeInterval);
+    autoInsta()
+    setTimeout(() => {
+        storeEquip(6);
+        storeEquip(21, 1);
+    },111)
+});
+
+canvas.addEventListener('touchstart', function() {
+    clearInterval(clickInterval)
+    clearInterval(closeInterval)
+    clickInterval = setInterval(() => {
+        storeEquip(7);
+        storeEquip(18, 1);
+    }, 30);
+    closeInterval = setInterval(() => {
+        storeEquip(20);
+        storeEquip(21, 1);
+    },60);
+});
+
+canvas.addEventListener('touchend', function() {
+    clearInterval(clickInterval);
+    clearInterval(closeInterval)
+    autoInsta()
+    setTimeout(() => {
+        storeEquip(6);
+        storeEquip(21, 1);
+    },111)
+});
+
 var hunt = false;
 var pony = "https://www.youtube.com/playlist?list=PL-iDkdBFmrBwa1PKCx8Jk8laYwTSPUXjM"
 
